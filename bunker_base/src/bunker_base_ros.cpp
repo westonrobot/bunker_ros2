@@ -15,29 +15,20 @@
 namespace westonrobot {
 BunkerBaseRos::BunkerBaseRos(std::string node_name)
     : rclcpp::Node(node_name), keep_running_(false) {
-  this->declare_parameter("port_name");   
+  this->declare_parameter("port_name","can0");   
 
-  this->declare_parameter("odom_frame");
-  this->declare_parameter("base_frame");
-  this->declare_parameter("odom_topic_name");
+  this->declare_parameter("odom_frame","odom");
+  this->declare_parameter("base_frame","base_link"."base_link");
+  this->declare_parameter("odom_topic_name","odom");
 
-  this->declare_parameter("is_bunker_mini");
-  this->declare_parameter("simulated_robot");
-  this->declare_parameter("control_rate");
+  this->declare_parameter("is_bunker_mini",false);
+  this->declare_parameter("simulated_robot",false);
+  this->declare_parameter("control_rate",50);
 
   LoadParameters();
 }
 
 void BunkerBaseRos::LoadParameters() {
-  this->get_parameter_or<std::string>("port_name", port_name_, "can0");
-
-  this->get_parameter_or<std::string>("odom_frame", odom_frame_, "odom");
-  this->get_parameter_or<std::string>("base_frame", base_frame_, "base_link");
-  this->get_parameter_or<std::string>("odom_topic_name", odom_topic_name_,
-                                      "odom");
-  this->get_parameter_or<bool>("is_bunker_mini", is_bunker_mini_, false);
-  this->get_parameter_or<bool>("simulated_robot", simulated_robot_, false);
-  this->get_parameter_or<int>("control_rate", sim_control_rate_, 50);
 
   std::cout << "Loading parameters: " << std::endl;
   std::cout << "- port name: " << port_name_ << std::endl;
