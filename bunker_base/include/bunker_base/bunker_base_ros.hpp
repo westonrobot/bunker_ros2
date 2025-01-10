@@ -32,15 +32,11 @@ class BunkerBaseRos : public rclcpp::Node {
   std::string base_frame_;
   std::string odom_topic_name_;
 
-  bool is_bunker_mini_ = false;
-  // bool is_omni_wheel_ = false;
-
   bool simulated_robot_ = false;
-  int sim_control_rate_ = 50;
-
+  int bunker_variant_; 
+  int sim_control_rate_ = 50; 
 
   std::shared_ptr<BunkerRobot> robot_;
-  // std::shared_ptr<BunkerMiniOmniRobot> omni_robot_;
 
   std::atomic<bool> keep_running_;
 

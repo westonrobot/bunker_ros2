@@ -21,8 +21,8 @@ def generate_launch_description():
                                                 description='Base link frame id')
     odom_topic_arg = DeclareLaunchArgument('odom_topic_name', default_value='odom',
                                            description='Odometry topic name')
-    is_bunker_mini_arg = DeclareLaunchArgument('is_bunker_mini', default_value='false',
-                                          description='Scout mini model')
+    bunker_variant_arg = DeclareLaunchArgument('bunker_variant', default_value='0',
+                                          description='Bunker robot')
     simulated_robot_arg = DeclareLaunchArgument('simulated_robot', default_value='false',
                                                    description='Whether running with simulator')
     sim_control_rate_arg = DeclareLaunchArgument('control_rate', default_value='50',
@@ -39,7 +39,7 @@ def generate_launch_description():
                 'odom_frame': launch.substitutions.LaunchConfiguration('odom_frame'),
                 'base_frame': launch.substitutions.LaunchConfiguration('base_frame'),
                 'odom_topic_name': launch.substitutions.LaunchConfiguration('odom_topic_name'),
-                'is_bunker_mini': launch.substitutions.LaunchConfiguration('is_bunker_mini'),
+                'bunker_variant': launch.substitutions.LaunchConfiguration('bunker_variant'),
                 'simulated_robot': launch.substitutions.LaunchConfiguration('simulated_robot'),
                 'control_rate': launch.substitutions.LaunchConfiguration('control_rate'),
         }])
@@ -50,7 +50,7 @@ def generate_launch_description():
         odom_frame_arg,
         base_link_frame_arg,
         odom_topic_arg,
-        is_bunker_mini_arg,
+        bunker_variant_arg,
         simulated_robot_arg,
         sim_control_rate_arg,
         bunker_base_node
